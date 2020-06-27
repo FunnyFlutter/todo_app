@@ -8,10 +8,25 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool canLogin;
 
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     canLogin = false;
+  }
+
+  void _checkInputValid(String _) {
+    // 这里的参数写成 _ 是表示在这里我们没有使用这个参数，这是一种比较约定俗称的写法
+    bool isInputValid = _emailController.text.contains('@') &&
+        _passwordController.text.length >= 6;
+    if (isInputValid == canLogin) {
+      return;
+    }
+    setState(() {
+      canLogin = isInputValid;
+    });
   }
 
   @override
@@ -64,6 +79,8 @@ class _LoginPageState extends State<LoginPage> {
                                   onSubmitted: (String value) {
                                     FocusScope.of(context).nextFocus();
                                   },
+                                  onChanged: _checkInputValid,
+                                  controller: _emailController,
                                 ),
                                 TextField(
                                   decoration: InputDecoration(
@@ -71,6 +88,8 @@ class _LoginPageState extends State<LoginPage> {
                                     labelText: '密码',
                                   ),
                                   obscureText: true,
+                                  onChanged: _checkInputValid,
+                                  controller: _passwordController,
                                 ),
                               ],
                             ),
