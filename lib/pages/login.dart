@@ -41,6 +41,7 @@ class LoginPage extends StatelessWidget {
                               hintText: '请输入六位以上的密码',
                               labelText: '密码',
                             ),
+                            obscureText: true,
                           ),
                         ],
                       ),
