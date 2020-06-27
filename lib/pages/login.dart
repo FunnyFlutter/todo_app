@@ -21,26 +21,37 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Container(
-                          child: Text('邮箱'),
-                          color: Colors.brown,
-                        ),
-                        Container(
-                          child: Text('密码'),
-                          color: Colors.brown,
-                        ),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.only(left: 24, right: 24, bottom: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Container(
+                            child: Text('邮箱'),
+                            color: Colors.brown,
+                          ),
+                          Container(
+                            child: Text('密码'),
+                            color: Colors.brown,
+                          ),
+                        ],
+                      ),
                     ),
-                    Container(
-                      child: Text('登录按钮'),
-                      color: Colors.brown,
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 24, right: 24, top: 12, bottom: 12),
+                      child: Container(
+                        child: Text('登录按钮'),
+                        color: Colors.brown,
+                      ),
                     ),
-                    Container(
-                      child: Text('注册提示'),
-                      color: Colors.brown,
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 24, right: 24, top: 12, bottom: 12),
+                      child: Container(
+                        child: Text('注册提示'),
+                        color: Colors.brown,
+                      ),
                     ),
                   ],
                 ),
