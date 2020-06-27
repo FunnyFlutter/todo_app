@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool canLogin;
+
+  @override
+  void initState() {
+    super.initState();
+    canLogin = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -70,6 +83,7 @@ class LoginPage extends StatelessWidget {
                               bottom: 12,
                             ),
                             child: FlatButton(
+                              onPressed: canLogin ? () {} : null,
                               child: Text(
                                 '登录',
                                 style: TextStyle(
