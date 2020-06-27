@@ -21,7 +21,6 @@ class LoginPage extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                color: Colors.red,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -48,10 +47,14 @@ class LoginPage extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          left: 24, right: 24, top: 12, bottom: 12),
-                      child: Container(
+                        left: 24,
+                        right: 24,
+                        top: 12,
+                        bottom: 12,
+                      ),
+                      child: FlatButton(
                         child: Text('登录按钮'),
-                        color: Colors.brown,
+                        color: Color.fromRGBO(69, 202, 181, 1),
                       ),
                     ),
                     Padding(
@@ -65,7 +68,6 @@ class LoginPage extends StatelessWidget {
                             Text('立即注册'),
                           ],
                         ),
-                        color: Colors.brown,
                       ),
                     ),
                   ],
