@@ -7,7 +7,6 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
-            // 利用 Expanded 来让两个 child 组件占满整个屏幕
             Expanded(
               child: Container(
                 color: Colors.blue,
@@ -19,8 +18,30 @@ class LoginPage extends StatelessWidget {
             Expanded(
               child: Container(
                 color: Colors.red,
-                child: Center(
-                  child: Text('bottom'),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          child: Text('邮箱'),
+                          color: Colors.brown,
+                        ),
+                        Container(
+                          child: Text('密码'),
+                          color: Colors.brown,
+                        ),
+                      ],
+                    ),
+                    Container(
+                      child: Text('登录按钮'),
+                      color: Colors.brown,
+                    ),
+                    Container(
+                      child: Text('注册提示'),
+                      color: Colors.brown,
+                    ),
+                  ],
                 ),
               ),
             ),
