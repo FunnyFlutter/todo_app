@@ -54,6 +54,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       child: FlatButton(
                         child: Text('登录按钮'),
+                        disabledColor: Color.fromRGBO(69, 202, 160, 0.5),
                         color: Color.fromRGBO(69, 202, 181, 1),
                       ),
                     ),
