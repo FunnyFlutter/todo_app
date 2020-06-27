@@ -49,7 +49,13 @@ class LoginPage extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: 24, right: 24, top: 12, bottom: 12),
                       child: Container(
-                        child: Text('注册提示'),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('没有账号？'),
+                            Text('立即注册'),
+                          ],
+                        ),
                         color: Colors.brown,
                       ),
                     ),
