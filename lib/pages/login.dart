@@ -9,9 +9,8 @@ class LoginPage extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Container(
-                color: Colors.blue,
                 child: Center(
-                  child: Text('top'),
+                  child: Image.asset('assets/images/mark.png'),
                 ),
               ),
             ),
