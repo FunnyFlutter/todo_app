@@ -30,13 +30,17 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
-                          Container(
-                            child: Text('邮箱'),
-                            color: Colors.brown,
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: '请输入邮箱',
+                              labelText: '邮箱',
+                            ),
                           ),
-                          Container(
-                            child: Text('密码'),
-                            color: Colors.brown,
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: '请输入六位以上的密码',
+                              labelText: '密码',
+                            ),
                           ),
                         ],
                       ),
