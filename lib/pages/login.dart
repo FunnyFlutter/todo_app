@@ -71,7 +71,10 @@ class LoginPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text('没有账号？'),
-                            Text('立即注册'),
+                            FlatButton(
+                              child: Text('立即注册'),
+                              onPressed: () {},
+                            ),
                           ],
                         ),
                       ),
