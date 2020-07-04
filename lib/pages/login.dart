@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/pages/register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -28,6 +27,10 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       canLogin = isInputValid;
     });
+  }
+
+  void _gotoRegister() {
+    Navigator.of(context).pushNamed('/register');
   }
 
   @override
@@ -124,11 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                                   Text('没有账号？'),
                                   InkWell(
                                     child: Text('立即注册'),
-                                    onTap: () => Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (_) => RegisterPage(),
-                                      ),
-                                    ),
+                                    onTap: _gotoRegister,
                                   ),
                                 ],
                               ),
