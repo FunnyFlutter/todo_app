@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:todo_list/config/colors.dart';
 import 'package:todo_list/pages/login.dart';
+import 'package:todo_list/pages/register.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +25,11 @@ class MyApp extends StatelessWidget {
         const Locale('en'),
         const Locale('zh', 'CN'),
       ],
-      home: LoginPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (conetxt) => LoginPage(),
+        '/register': (conetxt) => RegisterPage(),
+      },
     );
   }
 }
