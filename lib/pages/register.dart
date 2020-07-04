@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -6,7 +9,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final picker = ImagePicker();
+
   bool canRegister;
+  File image;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _repeatPasswordController = TextEditingController();
@@ -31,6 +37,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _gotoLogin() {}
 
+  void _getImage() async {
+    PickedFile pickedFile = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      image = File(pickedFile.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -50,38 +63,41 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     child: Container(
                       child: Center(
-                        child: FractionallySizedBox(
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                radius: 48,
-                                backgroundImage: AssetImage(
-                                  'assets/images/default_avatar.png',
+                        child: GestureDetector(
+                          onTap: _getImage,
+                          child: FractionallySizedBox(
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: <Widget>[
+                                CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  radius: 48,
+                                  backgroundImage: AssetImage(
+                                    'assets/images/default_avatar.png',
+                                  ),
                                 ),
-                              ),
-                              Positioned(
-                                right: 20,
-                                top: 5,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(17),
+                                Positioned(
+                                  right: 20,
+                                  top: 5,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(17),
+                                      ),
+                                      color: Color.fromARGB(255, 80, 210, 194),
                                     ),
-                                    color: Color.fromARGB(255, 80, 210, 194),
-                                  ),
-                                  child: Icon(
-                                    Icons.add,
-                                    size: 34,
-                                    color: Colors.white,
+                                    child: Icon(
+                                      Icons.add,
+                                      size: 34,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                            widthFactor: 0.4,
+                            heightFactor: 0.4,
                           ),
-                          widthFactor: 0.4,
-                          heightFactor: 0.4,
                         ),
                       ),
                     ),
