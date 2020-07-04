@@ -7,6 +7,11 @@ import 'package:todo_list/pages/register.dart';
 
 void main() => runApp(MyApp());
 
+final Map<String, WidgetBuilder> routes = {
+  LOGIN_PAGE_URL: (context) => LoginPage(),
+  REGISTER_PAGE_URL: (context) => RegisterPage(),
+};
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -27,9 +32,24 @@ class MyApp extends StatelessWidget {
         const Locale('zh', 'CN'),
       ],
       initialRoute: '/',
-      routes: {
-        LOGIN_PAGE_URL: (context) => LoginPage(),
-        REGISTER_PAGE_URL: (context) => RegisterPage(),
+      onGenerateRoute: (RouteSettings settings) {
+        if ([REGISTER_PAGE_URL].contains(settings.name)) {
+          return PageRouteBuilder(
+            settings: settings,
+            pageBuilder: (context, _, __) => routes[settings.name](context),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+          );
+        }
+        return MaterialPageRoute(
+          builder: routes[settings.name],
+          settings: settings,
+        );
       },
     );
   }
