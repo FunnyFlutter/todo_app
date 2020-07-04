@@ -5,7 +5,10 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('注册页面'),
+        child: GestureDetector(
+          child: Text('注册页面'),
+          onTap: () => Navigator.of(context).pop(),
+        ),
       ),
     );
   }
