@@ -72,9 +72,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 CircleAvatar(
                                   backgroundColor: Colors.transparent,
                                   radius: 48,
-                                  backgroundImage: AssetImage(
-                                    'assets/images/default_avatar.png',
-                                  ),
+                                  backgroundImage: image == null
+                                      ? AssetImage(
+                                          'assets/images/default_avatar.png',
+                                        )
+                                      : FileImage(image),
                                 ),
                                 Positioned(
                                   right: 20,
