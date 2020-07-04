@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       initialRoute: '/',
       onGenerateRoute: (RouteSettings settings) {
-        if ([REGISTER_PAGE_URL].contains(settings.name)) {
+        if ([REGISTER_PAGE_URL, LOGIN_PAGE_URL].contains(settings.name)) {
           return PageRouteBuilder(
             settings: settings,
             pageBuilder: (context, _, __) => routes[settings.name](context),
