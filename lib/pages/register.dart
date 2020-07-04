@@ -51,7 +51,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Container(
                       child: Center(
                         child: FractionallySizedBox(
-                          child: Container(),
+                          child: CircleAvatar(
+                            backgroundColor:Colors.transparent,
+                            radius:48,
+                            backgroundImage:AssetImage('assets/images/default_avatar.png'),
+                          ),
                           widthFactor: 0.4,
                           heightFactor: 0.4,
                         ),
