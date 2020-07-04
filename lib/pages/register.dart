@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:todo_list/const/route_url.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -35,7 +36,9 @@ class _RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  void _gotoLogin() {}
+  void _gotoLogin() {
+    Navigator.of(context).pushReplacementNamed(LOGIN_PAGE_URL);
+  }
 
   void _getImage() async {
     PickedFile pickedFile = await picker.getImage(source: ImageSource.gallery);
