@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:todo_list/const/route_url.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -30,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _gotoRegister() {
-    Navigator.of(context).pushNamed('/register');
+    Navigator.of(context).pushNamed(REGISTER_PAGE_URL);
   }
 
   @override
