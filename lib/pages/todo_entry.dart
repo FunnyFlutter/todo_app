@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/config/colors.dart';
 import 'package:todo_list/pages/todo_list.dart';
 
-class TodoEntryPage extends StatelessWidget {
+class TodoEntryPage extends StatefulWidget {
   const TodoEntryPage({Key key}) : super(key: key);
 
+  @override
+  _TodoEntryPageState createState() => _TodoEntryPageState();
+}
+
+class _TodoEntryPageState extends State<TodoEntryPage> {
   BottomNavigationBarItem _buildBottomNavigationBarItem(
     String imagePath, {
     double size,
