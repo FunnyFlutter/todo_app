@@ -5,3 +5,5 @@ const Color PRIMARY_COLOR = Color(0xFF50D2C2);
 const Color ACCENT_COLOR = Color(0xFF50D2C2);
 const Color INDICATOR_COLOR = Colors.white;
 const Color BACKGROUND_COLOR = Colors.white;
+const Color activeTabIconColor = Color(0xff50D2C2);
+const Color inactiveTabIconColor = Colors.black;
