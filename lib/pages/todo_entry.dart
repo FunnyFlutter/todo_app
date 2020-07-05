@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/config/colors.dart';
+import 'package:todo_list/pages/reporter.dart';
 import 'package:todo_list/pages/todo_list.dart';
+
+import 'about.dart';
+import 'calendar.dart';
 
 class TodoEntryPage extends StatefulWidget {
   const TodoEntryPage({Key key}) : super(key: key);
@@ -11,11 +15,19 @@ class TodoEntryPage extends StatefulWidget {
 
 class _TodoEntryPageState extends State<TodoEntryPage> {
   int currentIndex;
+  List<Widget> pages;
 
   @override
   void initState() {
     super.initState();
     currentIndex = 0;
+    pages = <Widget>[
+      TodoListPage(),
+      CalendarPage(),
+      Container(),
+      ReporterPage(),
+      AboutPage(),
+    ];
   }
 
   BottomNavigationBarItem _buildBottomNavigationBarItem(
@@ -57,7 +69,7 @@ class _TodoEntryPageState extends State<TodoEntryPage> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onTabChange,
-        currentIndex: 0,
+        currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           _buildBottomNavigationBarItem('assets/images/lists.png'),
@@ -71,7 +83,7 @@ class _TodoEntryPageState extends State<TodoEntryPage> {
           _buildBottomNavigationBarItem('assets/images/about.png'),
         ],
       ),
-      body: TodoListPage(),
+      body: pages[currentIndex],
     );
   }
 }
