@@ -41,6 +41,22 @@ class TodoEntryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onTabChange,
+        currentIndex: 0,
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          _buildBottomNavigationBarItem('assets/images/lists.png'),
+          _buildBottomNavigationBarItem('assets/images/calendar.png'),
+          _buildBottomNavigationBarItem(
+            'assets/images/add.png',
+            size: 50,
+            singleImage: true,
+          ),
+          _buildBottomNavigationBarItem('assets/images/report.png'),
+          _buildBottomNavigationBarItem('assets/images/about.png'),
+        ],
+      ),
       body: Center(
         child: Text(
           this.runtimeType.toString(),
