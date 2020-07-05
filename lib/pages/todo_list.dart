@@ -10,9 +10,7 @@ class TodoListPage extends StatelessWidget {
         title: Text('清单'),
       ),
       body: Center(
-        child: Text(
-          this.runtimeType.toString(),
-        ),
+        child: TextField(),
       ),
     );
   }
