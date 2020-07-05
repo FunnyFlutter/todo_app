@@ -36,6 +36,8 @@ class TodoEntryPage extends StatelessWidget {
     );
   }
 
+  _onTabChange(int index) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
