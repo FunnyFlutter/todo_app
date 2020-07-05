@@ -62,7 +62,11 @@ class _TodoEntryPageState extends State<TodoEntryPage> {
     );
   }
 
-  _onTabChange(int index) {}
+  _onTabChange(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
