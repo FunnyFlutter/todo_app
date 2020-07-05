@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/config/colors.dart';
+import 'package:todo_list/pages/todo_list.dart';
 
 class TodoEntryPage extends StatelessWidget {
   const TodoEntryPage({Key key}) : super(key: key);
@@ -57,11 +58,7 @@ class TodoEntryPage extends StatelessWidget {
           _buildBottomNavigationBarItem('assets/images/about.png'),
         ],
       ),
-      body: Center(
-        child: Text(
-          this.runtimeType.toString(),
-        ),
-      ),
+      body: TodoListPage(),
     );
   }
 }
