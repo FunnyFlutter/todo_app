@@ -10,6 +10,14 @@ class TodoEntryPage extends StatefulWidget {
 }
 
 class _TodoEntryPageState extends State<TodoEntryPage> {
+  int currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = 0;
+  }
+
   BottomNavigationBarItem _buildBottomNavigationBarItem(
     String imagePath, {
     double size,
