@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _gotoRegister() {
-    Navigator.of(context).pushReplacementNamed(
+    Navigator.of(context).pushNamed(
       REGISTER_PAGE_URL,
       arguments: RegisterPageArgument(
         'LoginPage',
