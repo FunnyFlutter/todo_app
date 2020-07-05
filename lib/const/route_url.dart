@@ -1,2 +1,3 @@
-const LOGIN_PAGE_URL = '/';
+const LOGIN_PAGE_URL = '/login';
 const REGISTER_PAGE_URL = '/register';
+const TODO_ENTRY_PAGE_URL = '/entry';
