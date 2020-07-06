@@ -56,6 +56,40 @@ class TodoItem extends StatelessWidget {
         margin: const EdgeInsets.all(10.0),
         padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
         height: 110,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Image.asset(
+                      todo.isFinished
+                          ? 'assets/images/rect_selected.png'
+                          : 'assets/images/rect.png',
+                      width: 25,
+                      height: 25,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: Text(todo.title),
+                    ),
+                  ],
+                ),
+                Container(
+                  child: Image.asset(
+                    todo.isStar
+                        ? 'assets/images/star.png'
+                        : 'assets/images/star_normal.png',
+                  ),
+                  width: 25,
+                  height: 25,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
