@@ -41,6 +41,22 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Opacity(
+      opacity: todo.isFinished ? 0.3 : 1.0,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            left: BorderSide(
+              width: 2,
+              color: todo.priority.color,
+            ),
+          ),
+        ),
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
+        height: 110,
+      ),
+    );
   }
 }
