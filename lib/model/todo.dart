@@ -73,6 +73,14 @@ class Todo {
   /// 是否星标任务
   bool isStar;
 
+  String get timeString {
+    String dateString = date.compareTo(DateTime.now()) == 0 ? 'today' : '${date.year}/${date.month}/${date.day}';
+    if (startTime == null || endTime == null) {
+      return dateString;
+    }
+    return '$dateString ${startTime.hour}:${startTime.minute} - ${endTime.hour}:${endTime.minute}';
+  }
+
   Todo({
     String id,
     this.title = "",

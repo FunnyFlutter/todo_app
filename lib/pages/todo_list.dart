@@ -88,6 +88,21 @@ class TodoItem extends StatelessWidget {
                 ),
               ],
             ),
+            Row(
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/group.png',
+                  width: 25.0,
+                  height: 25.0,
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: Text(
+                    todo.timeString,
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
