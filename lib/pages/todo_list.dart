@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/const/route_argument.dart';
+import 'package:todo_list/const/route_url.dart';
 import 'package:todo_list/model/todo.dart';
 import 'package:todo_list/utils/generate_todo.dart';
 
@@ -29,6 +31,15 @@ class _TodoListPageState extends State<TodoListPage> {
         itemBuilder: (context, index) {
           return TodoItem(
             todo: todoList[index],
+            onTap: (Todo todo) {
+              Navigator.of(context).pushNamed(
+                EDIT_TODO_PAGE_URL,
+                arguments: EditTodoPageArgument(
+                  openType: OpenType.Preview,
+                  todo: todo,
+                ),
+              );
+            },
             onFinished: (Todo todo) {
               setState(() {
                 todo.isFinished = !todo.isFinished;
