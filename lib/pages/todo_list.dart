@@ -34,3 +34,13 @@ class _TodoListPageState extends State<TodoListPage> {
   }
 }
 
+class TodoItem extends StatelessWidget {
+  final Todo todo;
+
+  const TodoItem({Key key, this.todo}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
