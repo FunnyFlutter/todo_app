@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list/component/delete_todo_dialog.dart';
 import 'package:todo_list/const/route_argument.dart';
 import 'package:todo_list/const/route_url.dart';
 import 'package:todo_list/model/todo.dart';
@@ -49,6 +51,20 @@ class _TodoListPageState extends State<TodoListPage> {
               setState(() {
                 todo.isStar = !todo.isStar;
               });
+            },
+            onLongPress: (Todo todo) async {
+              bool result = await showCupertinoDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return DeleteTodoDialog(
+                      todo: todo,
+                    );
+                  });
+              if (result) {
+                setState(() {
+                  todoList.remove(todo);
+                });
+              }
             },
           );
         },
