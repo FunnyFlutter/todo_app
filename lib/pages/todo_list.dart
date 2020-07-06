@@ -27,7 +27,19 @@ class _TodoListPageState extends State<TodoListPage> {
       body: ListView.builder(
         itemCount: todoList.length,
         itemBuilder: (context, index) {
-          return TodoItem(todo: todoList[index]);
+          return TodoItem(
+            todo: todoList[index],
+            onFinished: (Todo todo) {
+              setState(() {
+                todo.isFinished = !todo.isFinished;
+              });
+            },
+            onStar: (Todo todo) {
+              setState(() {
+                todo.isStar = !todo.isStar;
+              });
+            },
+          );
         },
       ),
     );
