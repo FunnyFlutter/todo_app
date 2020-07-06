@@ -34,10 +34,23 @@ class _TodoListPageState extends State<TodoListPage> {
   }
 }
 
+typedef TodoEventCallback = Function(Todo todo);
+
 class TodoItem extends StatelessWidget {
   final Todo todo;
+  final TodoEventCallback onStar;
+  final TodoEventCallback onFinished;
+  final TodoEventCallback onTap;
+  final TodoEventCallback onLongPress;
 
-  const TodoItem({Key key, this.todo}) : super(key: key);
+  const TodoItem({
+    Key key,
+    this.todo,
+    this.onStar,
+    this.onFinished,
+    this.onTap,
+    this.onLongPress,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
