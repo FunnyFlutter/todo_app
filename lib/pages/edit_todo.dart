@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/component/date_field_group.dart';
 import 'package:todo_list/component/label_group.dart';
+import 'package:todo_list/component/time_filed_group.dart';
 import 'package:todo_list/const/route_argument.dart';
 import 'package:todo_list/extension/date_time.dart';
+import 'package:todo_list/extension/time_of_day.dart';
 import 'package:todo_list/model/todo.dart';
 
 const TextStyle _labelTextStyle = TextStyle(
@@ -33,6 +35,10 @@ class _EditTodoPageState extends State<EditTodoPage> {
   Map<OpenType, _OpenTypeConfig> _openTypeConfigMap;
 
   final TextEditingController _dateTextEditingController = TextEditingController();
+  final TextEditingController _startTimeTextEditingController =
+      TextEditingController();
+  final TextEditingController _endTimeTextEditingController =
+      TextEditingController();
 
   @override
   void initState() {
@@ -52,12 +58,16 @@ class _EditTodoPageState extends State<EditTodoPage> {
     _openType = arguments.openType;
     _todo = arguments.todo ?? Todo();
     _dateTextEditingController.text = _todo.date.dateString;
+    _startTimeTextEditingController.text = _todo.startTime.timeString;
+    _endTimeTextEditingController.text = _todo.endTime.timeString;
   }
 
   @override
   void dispose() {
     super.dispose();
     _dateTextEditingController.dispose();
+    _startTimeTextEditingController.dispose();
+    _endTimeTextEditingController.dispose();
   }
 
   @override
@@ -109,6 +119,36 @@ class _EditTodoPageState extends State<EditTodoPage> {
                 _todo.date = value.dayTime;
                 _dateTextEditingController.text = _todo.date.dateString;
               },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: _buildTimeFormField(
+                    '开始时间',
+                    '请选择开始时间',
+                    initialValue: _todo.startTime,
+                    controller: _startTimeTextEditingController,
+                    onSelect: (value) {
+                      _todo.startTime = value;
+                      _startTimeTextEditingController.text =
+                          _todo.startTime.timeString;
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: _buildTimeFormField(
+                    '终止时间',
+                    '请选择终止时间',
+                    initialValue: _todo.endTime,
+                    controller: _endTimeTextEditingController,
+                    onSelect: (value) {
+                      _todo.endTime = value;
+                      _endTimeTextEditingController.text = _todo.endTime.timeString;
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -173,6 +213,34 @@ class _EditTodoPageState extends State<EditTodoPage> {
         initialDate: initialValue,
         startDate: initialValue ?? DateTime(now.year, now.month, now.day - 1),
         endDate: DateTime(2025),
+      ),
+    );
+  }
+
+  Widget _buildTimeFormField(
+    String title,
+    String hintText, {
+    TextEditingController controller,
+    TimeOfDay initialValue,
+    Function(TimeOfDay) onSelect,
+  }) {
+    return LabelGroup(
+      labelText: title,
+      labelStyle: _labelTextStyle,
+      padding: _labelPadding,
+      child: TimeFieldGroup(
+        onSelect: onSelect,
+        child: TextFormField(
+          validator: (String value) {
+            return value.length > 0 ? null : '$title 不能为空';
+          },
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: hintText,
+            disabledBorder: _textFormBorder,
+          ),
+        ),
+        initialTime: initialValue,
       ),
     );
   }
