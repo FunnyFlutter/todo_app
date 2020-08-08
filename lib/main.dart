@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:todo_list/config/colors.dart';
 import 'package:todo_list/const/route_url.dart';
+import 'package:todo_list/pages/edit_todo.dart';
 import 'package:todo_list/pages/login.dart';
 import 'package:todo_list/pages/register.dart';
 import 'package:todo_list/pages/todo_entry.dart';
@@ -12,6 +14,7 @@ final Map<String, WidgetBuilder> routes = {
   LOGIN_PAGE_URL: (context) => LoginPage(),
   REGISTER_PAGE_URL: (context) => RegisterPage(),
   TODO_ENTRY_PAGE_URL: (context) => TodoEntryPage(),
+  EDIT_TODO_PAGE_URL: (context) => EditTodoPage(),
 };
 
 class MyApp extends StatelessWidget {
@@ -46,6 +49,12 @@ class MyApp extends StatelessWidget {
                 child: child,
               );
             },
+          );
+        } else if ([EDIT_TODO_PAGE_URL].contains(settings.name)) {
+          return CupertinoPageRoute(
+            builder: routes[settings.name],
+            settings: settings,
+            fullscreenDialog: true,
           );
         }
         return MaterialPageRoute(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/config/colors.dart';
+import 'package:todo_list/const/route_argument.dart';
+import 'package:todo_list/const/route_url.dart';
 import 'package:todo_list/pages/reporter.dart';
 import 'package:todo_list/pages/todo_list.dart';
 
@@ -63,6 +65,13 @@ class _TodoEntryPageState extends State<TodoEntryPage> {
   }
 
   _onTabChange(int index) {
+    if (index == 2) {
+      Navigator.of(context).pushNamed(EDIT_TODO_PAGE_URL,
+          arguments: EditTodoPageArgument(
+            openType: OpenType.Add,
+          ));
+      return;
+    }
     setState(() {
       currentIndex = index;
     });
