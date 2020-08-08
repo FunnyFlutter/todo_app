@@ -27,6 +27,7 @@ class _EditTodoPageState extends State<EditTodoPage> {
   OpenType _openType;
   Todo _todo;
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Map<OpenType, _OpenTypeConfig> _openTypeConfigMap;
 
   @override
@@ -116,7 +117,10 @@ class _EditTodoPageState extends State<EditTodoPage> {
   }
 
   void _submit() {
-    Navigator.of(context).pop();
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      Navigator.of(context).pop(_todo);
+    }
   }
 }
 
