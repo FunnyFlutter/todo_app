@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/component/label_group.dart';
 import 'package:todo_list/const/route_argument.dart';
 import 'package:todo_list/model/todo.dart';
+
+const TextStyle _labelTextStyle = TextStyle(
+  color: Color(0xFF1D1D26),
+  fontFamily: 'Avenir',
+  fontSize: 14.0,
+);
+const EdgeInsets _labelPadding = const EdgeInsets.fromLTRB(20, 10, 20, 20);
+const InputBorder _textFormBorder = UnderlineInputBorder(
+  borderSide: BorderSide(
+    color: Colors.black26,
+    width: 0.5,
+  ),
+);
 
 class EditTodoPage extends StatefulWidget {
   const EditTodoPage({Key key}) : super(key: key);
@@ -57,6 +71,36 @@ class _EditTodoPageState extends State<EditTodoPage> {
 
   Widget _buildForm() {
     return Center(child: Text(_openType.toString()));
+  }
+
+  Widget _buildTextFormField(
+    String title,
+    String hintText, {
+    int maxLines,
+    String initialValue,
+    FormFieldSetter<String> onSaved,
+  }) {
+    TextInputType inputType =
+        maxLines == null ? TextInputType.multiline : TextInputType.text;
+    return LabelGroup(
+      labelText: title,
+      labelStyle: _labelTextStyle,
+      padding: _labelPadding,
+      child: TextFormField(
+        keyboardType: inputType,
+        validator: (String value) {
+          return value.length > 0 ? null : '$title 不能为空';
+        },
+        onSaved: onSaved,
+        textInputAction: TextInputAction.done,
+        maxLines: maxLines,
+        initialValue: initialValue,
+        decoration: InputDecoration(
+          hintText: hintText,
+          enabledBorder: _textFormBorder,
+        ),
+      ),
+    );
   }
 
   void _edit() {
