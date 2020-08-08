@@ -4,6 +4,7 @@ import 'package:todo_list/component/delete_todo_dialog.dart';
 import 'package:todo_list/const/route_argument.dart';
 import 'package:todo_list/const/route_url.dart';
 import 'package:todo_list/model/todo.dart';
+import 'package:todo_list/model/todo_list.dart';
 import 'package:todo_list/utils/generate_todo.dart';
 
 class TodoListPage extends StatefulWidget {
@@ -14,12 +15,12 @@ class TodoListPage extends StatefulWidget {
 }
 
 class _TodoListPageState extends State<TodoListPage> {
-  List<Todo> todoList;
+  TodoList todoList;
 
   @override
   void initState() {
     super.initState();
-    todoList = generateTodos(100);
+    todoList = TodoList(generateTodos(100));
   }
 
   @override
@@ -32,7 +33,7 @@ class _TodoListPageState extends State<TodoListPage> {
         itemCount: todoList.length,
         itemBuilder: (context, index) {
           return TodoItem(
-            todo: todoList[index],
+            todo: todoList.list[index],
             onTap: (Todo todo) {
               Navigator.of(context).pushNamed(
                 EDIT_TODO_PAGE_URL,
@@ -45,11 +46,13 @@ class _TodoListPageState extends State<TodoListPage> {
             onFinished: (Todo todo) {
               setState(() {
                 todo.isFinished = !todo.isFinished;
+                todoList.update(todo);
               });
             },
             onStar: (Todo todo) {
               setState(() {
                 todo.isStar = !todo.isStar;
+                todoList.update(todo);
               });
             },
             onLongPress: (Todo todo) async {
@@ -62,7 +65,7 @@ class _TodoListPageState extends State<TodoListPage> {
                   });
               if (result) {
                 setState(() {
-                  todoList.remove(todo);
+                  todoList.remove(todo.id);
                 });
               }
             },
