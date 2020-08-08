@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/component/date_field_group.dart';
 import 'package:todo_list/component/label_group.dart';
 import 'package:todo_list/const/route_argument.dart';
+import 'package:todo_list/extension/date_time.dart';
 import 'package:todo_list/model/todo.dart';
 
 const TextStyle _labelTextStyle = TextStyle(
@@ -30,6 +32,8 @@ class _EditTodoPageState extends State<EditTodoPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Map<OpenType, _OpenTypeConfig> _openTypeConfigMap;
 
+  final TextEditingController _dateTextEditingController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +51,13 @@ class _EditTodoPageState extends State<EditTodoPage> {
     EditTodoPageArgument arguments = ModalRoute.of(context).settings.arguments;
     _openType = arguments.openType;
     _todo = arguments.todo ?? Todo();
+    _dateTextEditingController.text = _todo.date.dateString;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _dateTextEditingController.dispose();
   }
 
   @override
@@ -89,6 +100,16 @@ class _EditTodoPageState extends State<EditTodoPage> {
               initialValue: _todo.description,
               onSaved: (value) => _todo.description = value,
             ),
+            _buildDateFormField(
+              '日期',
+              '请选择日期',
+              initialValue: _todo.date,
+              controller: _dateTextEditingController,
+              onSelect: (value) {
+                _todo.date = value.dayTime;
+                _dateTextEditingController.text = _todo.date.dateString;
+              },
+            ),
           ],
         ),
       ),
@@ -121,6 +142,37 @@ class _EditTodoPageState extends State<EditTodoPage> {
           hintText: hintText,
           enabledBorder: _textFormBorder,
         ),
+      ),
+    );
+  }
+
+  Widget _buildDateFormField(
+    String title,
+    String hintText, {
+    DateTime initialValue,
+    TextEditingController controller,
+    Function(DateTime) onSelect,
+  }) {
+    DateTime now = DateTime.now();
+    return LabelGroup(
+      labelText: title,
+      labelStyle: _labelTextStyle,
+      padding: _labelPadding,
+      child: DateFieldGroup(
+        onSelect: onSelect,
+        child: TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: hintText,
+            disabledBorder: _textFormBorder,
+          ),
+          validator: (String value) {
+            return value == null ? '$title 不能为空' : null;
+          },
+        ),
+        initialDate: initialValue,
+        startDate: initialValue ?? DateTime(now.year, now.month, now.day - 1),
+        endDate: DateTime(2025),
       ),
     );
   }
