@@ -73,8 +73,23 @@ class _EditTodoPageState extends State<EditTodoPage> {
   Widget _buildForm() {
     return SingleChildScrollView(
       child: Form(
+        key: _formKey,
         child: Column(
-          children: <Widget>[],
+          children: <Widget>[
+            _buildTextFormField(
+              '名称',
+              '任务名称',
+              maxLines: 1,
+              initialValue: _todo.title,
+              onSaved: (value) => _todo.title = value,
+            ),
+            _buildTextFormField(
+              '描述',
+              '任务描述',
+              initialValue: _todo.description,
+              onSaved: (value) => _todo.description = value,
+            ),
+          ],
         ),
       ),
     );
