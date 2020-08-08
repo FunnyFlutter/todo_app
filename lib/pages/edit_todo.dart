@@ -70,7 +70,13 @@ class _EditTodoPageState extends State<EditTodoPage> {
   }
 
   Widget _buildForm() {
-    return Center(child: Text(_openType.toString()));
+    return SingleChildScrollView(
+      child: Form(
+        child: Column(
+          children: <Widget>[],
+        ),
+      ),
+    );
   }
 
   Widget _buildTextFormField(
