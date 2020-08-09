@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/config/colors.dart';
 import 'package:todo_list/const/route_argument.dart';
 import 'package:todo_list/const/route_url.dart';
+import 'package:todo_list/model/todo.dart';
 import 'package:todo_list/pages/reporter.dart';
 import 'package:todo_list/pages/todo_list.dart';
 
@@ -18,13 +19,14 @@ class TodoEntryPage extends StatefulWidget {
 class _TodoEntryPageState extends State<TodoEntryPage> {
   int currentIndex;
   List<Widget> pages;
+  GlobalKey<TodoListPageState> todoListPageState = GlobalKey<TodoListPageState>();
 
   @override
   void initState() {
     super.initState();
     currentIndex = 0;
     pages = <Widget>[
-      TodoListPage(),
+      TodoListPage(key: todoListPageState),
       CalendarPage(),
       Container(),
       ReporterPage(),
@@ -74,6 +76,7 @@ class _TodoEntryPageState extends State<TodoEntryPage> {
       );
       if (todo != null) {
         index = 0;
+        todoListPageState.currentState.addTodo(todo);
       }
       return;
     }

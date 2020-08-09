@@ -11,16 +11,22 @@ class TodoListPage extends StatefulWidget {
   const TodoListPage({Key key}) : super(key: key);
 
   @override
-  _TodoListPageState createState() => _TodoListPageState();
+  TodoListPageState createState() => TodoListPageState();
 }
 
-class _TodoListPageState extends State<TodoListPage> {
+class TodoListPageState extends State<TodoListPage> {
   TodoList todoList;
 
   @override
   void initState() {
     super.initState();
     todoList = TodoList(generateTodos(100));
+  }
+
+  void addTodo(Todo todo) {
+    setState(() {
+      todoList.add(todo);
+    });
   }
 
   @override
