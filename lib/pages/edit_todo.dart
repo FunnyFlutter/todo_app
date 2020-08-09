@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/component/date_field_group.dart';
 import 'package:todo_list/component/label_group.dart';
+import 'package:todo_list/component/prority_field_group.dart';
 import 'package:todo_list/component/time_filed_group.dart';
 import 'package:todo_list/const/route_argument.dart';
 import 'package:todo_list/extension/date_time.dart';
@@ -257,36 +258,44 @@ class _EditTodoPageState extends State<EditTodoPage> {
       labelText: title,
       labelStyle: _labelTextStyle,
       padding: _labelPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  child: Text(_todo.priority.description),
-                ),
-                Container(
-                  width: 100,
-                  height: 50,
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: 100,
-                    height: 5,
-                    color: _todo.priority.color,
+      child: PriorityFieldGroup(
+        initialValue: _todo.priority,
+        onChange: (Priority priority) {
+          setState(() {
+            _todo.priority = priority;
+          });
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    child: Text(_todo.priority.description),
                   ),
-                ),
-              ],
+                  Container(
+                    width: 100,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: 100,
+                      height: 5,
+                      color: _todo.priority.color,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Divider(
-            height: 1,
-            thickness: 1,
-            color: Colors.black26,
-          ),
-        ],
+            Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.black26,
+            ),
+          ],
+        ),
       ),
     );
   }
