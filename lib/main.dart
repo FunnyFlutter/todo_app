@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:todo_list/config/colors.dart';
 import 'package:todo_list/const/route_url.dart';
+import 'package:todo_list/model/todo.dart';
 import 'package:todo_list/pages/edit_todo.dart';
 import 'package:todo_list/pages/login.dart';
 import 'package:todo_list/pages/register.dart';
@@ -42,8 +43,7 @@ class MyApp extends StatelessWidget {
           return PageRouteBuilder(
             settings: settings,
             pageBuilder: (context, _, __) => routes[settings.name](context),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
               return FadeTransition(
                 opacity: animation,
                 child: child,
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
             },
           );
         } else if ([EDIT_TODO_PAGE_URL].contains(settings.name)) {
-          return CupertinoPageRoute(
+          return CupertinoPageRoute<Todo>(
             builder: routes[settings.name],
             settings: settings,
             fullscreenDialog: true,

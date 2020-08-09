@@ -64,12 +64,17 @@ class _TodoEntryPageState extends State<TodoEntryPage> {
     );
   }
 
-  _onTabChange(int index) {
+  _onTabChange(int index) async {
     if (index == 2) {
-      Navigator.of(context).pushNamed(EDIT_TODO_PAGE_URL,
-          arguments: EditTodoPageArgument(
-            openType: OpenType.Add,
-          ));
+      Todo todo = await Navigator.of(context).pushNamed(
+        EDIT_TODO_PAGE_URL,
+        arguments: EditTodoPageArgument(
+          openType: OpenType.Add,
+        ),
+      );
+      if (todo != null) {
+        index = 0;
+      }
       return;
     }
     setState(() {
