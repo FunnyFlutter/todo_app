@@ -150,6 +150,9 @@ class _EditTodoPageState extends State<EditTodoPage> {
                 ),
               ],
             ),
+            _buildPriorityFormField(
+              '优先级',
+            ),
           ],
         ),
       ),
@@ -241,6 +244,49 @@ class _EditTodoPageState extends State<EditTodoPage> {
           ),
         ),
         initialTime: initialValue,
+      ),
+    );
+  }
+
+  Widget _buildPriorityFormField(
+    String title, {
+    TextEditingController textController,
+    Function(Priority) onSaved,
+  }) {
+    return LabelGroup(
+      labelText: title,
+      labelStyle: _labelTextStyle,
+      padding: _labelPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Text(_todo.priority.description),
+                ),
+                Container(
+                  width: 100,
+                  height: 50,
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 100,
+                    height: 5,
+                    color: _todo.priority.color,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: Colors.black26,
+          ),
+        ],
       ),
     );
   }
