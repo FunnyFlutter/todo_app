@@ -93,68 +93,79 @@ class _EditTodoPageState extends State<EditTodoPage> {
   }
 
   Widget _buildForm() {
+    bool canEdit = _openType != OpenType.Preview;
     return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            _buildTextFormField(
-              '名称',
-              '任务名称',
-              maxLines: 1,
-              initialValue: _todo.title,
-              onSaved: (value) => _todo.title = value,
-            ),
-            _buildTextFormField(
-              '描述',
-              '任务描述',
-              initialValue: _todo.description,
-              onSaved: (value) => _todo.description = value,
-            ),
-            _buildDateFormField(
-              '日期',
-              '请选择日期',
-              initialValue: _todo.date,
-              controller: _dateTextEditingController,
-              onSelect: (value) {
-                _todo.date = value.dayTime;
-                _dateTextEditingController.text = _todo.date.dateString;
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: IgnorePointer(
+        ignoring: !canEdit,
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Form(
+            key: _formKey,
+            child: Column(
               children: <Widget>[
-                Expanded(
-                  child: _buildTimeFormField(
-                    '开始时间',
-                    '请选择开始时间',
-                    initialValue: _todo.startTime,
-                    controller: _startTimeTextEditingController,
-                    onSelect: (value) {
-                      _todo.startTime = value;
-                      _startTimeTextEditingController.text =
-                          _todo.startTime.timeString;
-                    },
-                  ),
+                _buildTextFormField(
+                  '名称',
+                  '任务名称',
+                  maxLines: 1,
+                  initialValue: _todo.title,
+                  onSaved: (value) => _todo.title = value,
                 ),
-                Expanded(
-                  child: _buildTimeFormField(
-                    '终止时间',
-                    '请选择终止时间',
-                    initialValue: _todo.endTime,
-                    controller: _endTimeTextEditingController,
-                    onSelect: (value) {
-                      _todo.endTime = value;
-                      _endTimeTextEditingController.text = _todo.endTime.timeString;
-                    },
-                  ),
+                _buildTextFormField(
+                  '描述',
+                  '任务描述',
+                  initialValue: _todo.description,
+                  onSaved: (value) => _todo.description = value,
+                ),
+                _buildDateFormField(
+                  '日期',
+                  '请选择日期',
+                  initialValue: _todo.date,
+                  controller: _dateTextEditingController,
+                  onSelect: (value) {
+                    _todo.date = value.dayTime;
+                    _dateTextEditingController.text = _todo.date.dateString;
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      child: _buildTimeFormField(
+                        '开始时间',
+                        '请选择开始时间',
+                        initialValue: _todo.startTime,
+                        controller: _startTimeTextEditingController,
+                        onSelect: (value) {
+                          _todo.startTime = value;
+                          _startTimeTextEditingController.text =
+                              _todo.startTime.timeString;
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildTimeFormField(
+                        '终止时间',
+                        '请选择终止时间',
+                        initialValue: _todo.endTime,
+                        controller: _endTimeTextEditingController,
+                        onSelect: (value) {
+                          _todo.endTime = value;
+                          _endTimeTextEditingController.text =
+                              _todo.endTime.timeString;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                _buildPriorityFormField(
+                  '优先级',
                 ),
               ],
             ),
-            _buildPriorityFormField(
-              '优先级',
-            ),
-          ],
+          ),
         ),
       ),
     );
