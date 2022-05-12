@@ -1,16 +1,10 @@
 # funny_todo_app
 
-A new Flutter project.
+《有趣的 Flutter》一书的随书代码。
 
-## Getting Started
+## 勘误表
 
-This project is a starting point for a Flutter application.
+| 页数  | 原文                                                         | 勘误                                                         |
+| ----- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 78 页 | “Positioned 的left、right、bottom、top 表示组件与 Stack 容器的距离。如果你在指定 lett 和 right 后，叉指定了~~widget~~，是会出问题的” | “Positioned 的left、right、bottom、top 表示组件与 Stack 容器的距离。如果你在指定 lett 和 right 后，叉指定了**width**，是会出问题的” |
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
